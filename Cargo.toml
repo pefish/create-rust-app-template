@@ -1,13 +1,23 @@
 [package]
-name = "create-rust-app-template"
+name = "template"
 version = "0.1.0"
 authors = ["pefish <pefish@qq.com>"]
 edition = "2018"
+default-run = "template"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+tokio = { version = "1.17.0", features = ["full"] }
+env_logger = "0.9.0"
+serde = { version = "1.0.136", features = ["derive"] }
+toml = "0.5.8"
+log = "0.4.14"
 
-[package.metadata.scripts]
-build = "cargo build"
-publish = "cargo exec build && cargo test && cargo publish --allow-dirty"
+[[bin]]
+name = "template"
+path = "src/main.rs"
+
+[profile.release]
+debug = true
+panic = 'abort'
