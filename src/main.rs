@@ -3,7 +3,7 @@ use std::time::Duration;
 
 use tokio::{fs::File, io::AsyncReadExt, task, time};
 use serde::{Serialize, Deserialize};
-use anyhow::{Context, Result};
+use anyhow::{Context, Result, Error};
 
 mod util;
 
@@ -13,7 +13,7 @@ pub struct Config {
 }
 
 #[tokio::main]
-async fn main() -> Result<()> {
+async fn main() -> Result<(), Error> {
     env_logger::init();
 
     let config_env = std::env::var("RUST_CONFIG").context("read RUST_CONFIG env error")?;
@@ -37,7 +37,7 @@ async fn main() -> Result<()> {
     });
 
     // Block until ctrl-c is hit
-    util::block_until_sigint().await;
+    util::block_until_sigint().await.context("block_until_sigint error")?;
 
     
 
