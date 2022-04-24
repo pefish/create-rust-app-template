@@ -14,6 +14,7 @@ serde = { version = "1.0.136", features = ["derive"] }
 toml = "0.5.8"
 log = "0.4.14"
 anyhow = "1.0.56"
+ctrlc = { version = "3.2.2", features = ["termination"] }
 
 [[bin]]
 name = "template"

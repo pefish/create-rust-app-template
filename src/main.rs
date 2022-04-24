@@ -1,7 +1,11 @@
 
-use tokio::{fs::File, io::AsyncReadExt};
+use std::time::Duration;
+
+use tokio::{fs::File, io::AsyncReadExt, task, time};
 use serde::{Serialize, Deserialize};
 use anyhow::{Context, Result};
+
+mod util;
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct Config {
@@ -23,5 +27,25 @@ async fn main() -> Result<()> {
     let config: Config = toml::from_str(config_str.as_str()).context("parse config error")?;
     log::info!("config.test: {:?}", config.test);
     
+
+    let test_task = task::spawn(async move {
+        let mut inte = time::interval(Duration::from_secs(2));
+        loop {
+            inte.tick().await;
+            log::info!("test");
+        }
+    });
+
+    // Block until ctrl-c is hit
+    util::block_until_sigint().await;
+
+    
+
+    // Cancel all async services
+    test_task.abort();
+
+
+    log::info!("Finish shutdown.");
+
     Ok(())
 }

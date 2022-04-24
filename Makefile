@@ -9,10 +9,10 @@ build:
 	cargo +nightly build
 
 run:
-	RUST_LOG=debug RUST_BACKTRACE=1 RUST_CONFIG=./config/sample.toml cargo +nightly run
+	RUST_LOG=debug RUST_BACKTRACE=full RUST_CONFIG=./config/sample.toml cargo +nightly run
 
 run-bin:
-	RUST_LOG=debug RUST_BACKTRACE=1 RUST_CONFIG=./config/sample.toml cargo +nightly run --bin $(bin)
+	RUST_LOG=debug RUST_BACKTRACE=full RUST_CONFIG=./config/sample.toml cargo +nightly run --bin $(bin)
 
 install: build-release
 	sudo install -C ./target/release/lotus-window-client /usr/local/bin/lotus-window-client-rs
