@@ -14,7 +14,9 @@ serde = { version = "1.0.136", features = ["derive"] }
 toml = "0.5.8"
 log = "0.4.14"
 anyhow = "1.0.56"
-ctrlc = { version = "3.2.2", features = ["termination"] }
+signal-hook-tokio = { version = "0.3.1", features = ["futures-v0_3"] }
+signal-hook = "0.3.13"
+futures = "0.3.21"
 
 [[bin]]
 name = "template"

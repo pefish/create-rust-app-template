@@ -1,9 +1,10 @@
 
 use std::time::Duration;
 
-use tokio::{fs::File, io::AsyncReadExt, task, time};
+use tokio::{fs::File, io::AsyncReadExt, time};
 use serde::{Serialize, Deserialize};
 use anyhow::{Context, Result, Error};
+
 
 mod util;
 
@@ -28,22 +29,20 @@ async fn main() -> Result<(), Error> {
     log::info!("config.test: {:?}", config.test);
     
 
-    let test_task = task::spawn(async move {
+    util::block_until_sigint(async move {
         let mut inte = time::interval(Duration::from_secs(2));
+        let mut tmp = 0;
         loop {
             inte.tick().await;
             log::info!("test");
+            tmp += 1;
+            if tmp == 5 {
+                break;
+            }
         }
-    });
 
-    // Block until ctrl-c is hit
-    util::block_until_sigint().await.context("block_until_sigint error")?;
-
-    
-
-    // Cancel all async services
-    test_task.abort();
-
+        log::info!("3");
+    }).await.context("block_until_sigint error")?;
 
     log::info!("Finish shutdown.");
 
