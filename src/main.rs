@@ -34,14 +34,12 @@ async fn main() -> Result<(), Error> {
         let mut tmp = 0;
         loop {
             inte.tick().await;
-            log::info!("test");
             tmp += 1;
             if tmp == 5 {
                 break;
             }
         }
 
-        log::info!("3");
     }).await.context("block_until_sigint error")?;
 
     log::info!("Finish shutdown.");
