@@ -35,6 +35,20 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "bef38d45163c2f1dde094a7dfd33ccf595c92905c8f8f4fdc18d06fb1037718a"
 
 [[package]]
+name = "block_until_sigint"
+version = "0.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "7cb6d13ff2c4d2fa62428123fa0759837e04633e29003551dfb8b177d44c3042"
+dependencies = [
+ "anyhow",
+ "futures",
+ "log",
+ "signal-hook",
+ "signal-hook-tokio",
+ "tokio",
+]
+
+[[package]]
 name = "bytes"
 version = "1.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -415,6 +429,7 @@ name = "template"
 version = "0.1.0"
 dependencies = [
  "anyhow",
+ "block_until_sigint",
  "env_logger",
  "futures",
  "log",

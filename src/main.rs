@@ -6,8 +6,6 @@ use serde::{Serialize, Deserialize};
 use anyhow::{Context, Result, Error};
 
 
-mod util;
-
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct Config {
     pub test: Option<String>,
@@ -29,11 +27,12 @@ async fn main() -> Result<(), Error> {
     log::info!("config.test: {:?}", config.test);
     
 
-    util::block_until_sigint(async move {
+    block_until_sigint::block(async move {
         let mut inte = time::interval(Duration::from_secs(2));
         let mut tmp = 0;
         loop {
             inte.tick().await;
+            log::info!("test");
             tmp += 1;
             if tmp == 5 {
                 break;

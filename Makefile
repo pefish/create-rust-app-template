@@ -11,6 +11,9 @@ build:
 publish:
 	cargo +nightly publish
 
+test:
+	cargo +nightly test
+
 run:
 	RUST_LOG=debug RUST_BACKTRACE=full RUST_CONFIG=./config/sample.toml cargo +nightly run
 
