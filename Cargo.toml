@@ -26,3 +26,8 @@ path = "src/main.rs"
 [profile.release]
 debug = true
 panic = 'abort'
+
+[[example]]
+name = "test"
+path = "examples/test.rs"
+
