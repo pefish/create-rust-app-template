@@ -5,8 +5,8 @@ use tokio::{fs::File, io::AsyncReadExt, time};
 use serde::{Serialize, Deserialize};
 use anyhow::{Context, Result, Error};
 
-mod test_module;
-use test_module::test_module_fn;
+mod module;
+use module::hello;
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct Config {
@@ -28,7 +28,7 @@ async fn main() -> Result<(), Error> {
     let config: Config = toml::from_str(config_str.as_str()).context("parse config error")?;
     log::info!("config.test: {:?}", config.test);
     
-    test_module_fn();
+    log::info!("{}", hello().await);
 
     block_until_sigint::block(async move {
         let mut inte = time::interval(Duration::from_secs(2));

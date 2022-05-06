@@ -2,12 +2,12 @@
 extern crate template;
 use anyhow::{Result, Ok};
 
-use template::test_module::test_module_fn;
+use template::module::hello;
 
 #[tokio::main]
 async fn main() -> Result<()> {
 
-    test_module_fn();
+    println!("{}", hello().await);
     
     
     Ok(())
