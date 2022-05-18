@@ -8,6 +8,8 @@ use anyhow::{Context, Result, Error};
 mod module;
 use module::hello;
 
+mod module_test;
+
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct Config {
     pub test: Option<String>,
