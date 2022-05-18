@@ -12,7 +12,7 @@ publish:
 	cargo publish
 
 test:
-	cargo test
+	cargo test -- --exact --nocapture
 
 run:
 	RUST_LOG=debug RUST_BACKTRACE=full RUST_CONFIG=./config/sample.toml cargo run
