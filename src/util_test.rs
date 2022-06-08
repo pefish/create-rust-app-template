@@ -1,6 +1,6 @@
 #[cfg(test)]
 
-use super::module::hello;
+use super::util::hello;
 
 #[tokio::main]
 #[test]

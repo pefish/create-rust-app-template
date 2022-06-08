@@ -5,10 +5,10 @@ use tokio::{fs::File, io::AsyncReadExt, time};
 use serde::{Serialize, Deserialize};
 use anyhow::{Context, Result, Error};
 
-mod module;
-use module::hello;
+mod util;
+use util::hello;
 
-mod module_test;
+mod util_test;
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct Config {

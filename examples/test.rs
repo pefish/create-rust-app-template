@@ -2,7 +2,7 @@
 extern crate template;
 use anyhow::{Result, Ok};
 
-use template::module::hello;
+use template::util::hello;
 
 #[tokio::main]
 async fn main() -> Result<()> {
