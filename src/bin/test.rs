@@ -1,15 +1,11 @@
-extern crate template;
+use anyhow::{Error, Result};
 
-use anyhow::{Context, Result, Error};
-
-use template::util::hello;
-
-
+use app_name::util::hello;
 
 #[tokio::main]
 async fn main() -> Result<(), Error> {
     env_logger::init();
-    
+
     println!("{}", hello().await);
 
     Ok(())

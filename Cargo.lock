@@ -18,6 +18,23 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "4361135be9122e0870de935d7c439aef945b9f9ddd4199a553b5270b49c82a27"
 
 [[package]]
+name = "app-name"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "block_until_sigint",
+ "dotenv",
+ "env_logger",
+ "futures",
+ "log",
+ "serde",
+ "signal-hook",
+ "signal-hook-tokio",
+ "tokio",
+ "toml",
+]
+
+[[package]]
 name = "atty"
 version = "0.2.14"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -59,6 +76,12 @@ name = "cfg-if"
 version = "1.0.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "baf1de4339761588bc0619e3cbc0120ee582ebb74b53b4efbf79117bd2da40fd"
+
+[[package]]
+name = "dotenv"
+version = "0.15.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "77c90badedccf4105eca100756a0b1289e191f6fcbdadd3cee1d2f614f97da8f"
 
 [[package]]
 name = "env_logger"
@@ -422,22 +445,6 @@ dependencies = [
  "proc-macro2",
  "quote",
  "unicode-xid",
-]
-
-[[package]]
-name = "template"
-version = "0.1.0"
-dependencies = [
- "anyhow",
- "block_until_sigint",
- "env_logger",
- "futures",
- "log",
- "serde",
- "signal-hook",
- "signal-hook-tokio",
- "tokio",
- "toml",
 ]
 
 [[package]]

@@ -1,35 +1,24 @@
-
 use std::time::Duration;
 
-use tokio::{fs::File, io::AsyncReadExt, time};
-use serde::{Serialize, Deserialize};
-use anyhow::{Context, Result, Error};
+use anyhow::{Context, Error, Result};
+use tokio::time;
 
 mod util;
 use util::hello;
 
 mod util_test;
 
-#[derive(Serialize, Deserialize, Debug, Clone)]
-pub struct Config {
-    pub test: Option<String>,
-}
+use dotenv::dotenv;
 
 #[tokio::main]
 async fn main() -> Result<(), Error> {
+    dotenv().ok();
     env_logger::init();
 
-    let config_env = std::env::var("RUST_CONFIG").context("read RUST_CONFIG env error")?;
+    let test = std::env::var("TEST").expect("TEST env must be set.");
 
-    let mut fs = File::open(config_env).await.context("open config file error")?;
-    let mut config_str = String::new();
-    fs.read_to_string(&mut config_str).await.context("fs read_to_string error")?;
+    log::info!("test: {}", test);
 
-    log::debug!("config: {}", config_str);
-
-    let config: Config = toml::from_str(config_str.as_str()).context("parse config error")?;
-    log::info!("config.test: {:?}", config.test);
-    
     log::info!("{}", hello().await);
 
     block_until_sigint::block(async move {
@@ -43,12 +32,11 @@ async fn main() -> Result<(), Error> {
                 break;
             }
         }
-
-    }).await.context("block_until_sigint error")?;
+    })
+    .await
+    .context("block_until_sigint error")?;
 
     log::info!("Finish shutdown.");
 
     Ok(())
 }
-
-

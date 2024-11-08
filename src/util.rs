@@ -1,4 +1,3 @@
-
-pub async fn hello () -> String {
-    return String::from("hello");
+pub async fn hello() -> String {
+    String::from("hello")
 }
