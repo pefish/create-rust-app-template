@@ -1,10 +1,12 @@
+mod test;
+mod util;
+
 use std::time::Duration;
 
 use anyhow::{Context, Error, Result};
 use tokio::time;
 
-mod util;
-use util::say_hello::hello;
+use test::test::test_method;
 
 use dotenv::dotenv;
 
@@ -17,7 +19,7 @@ async fn main() -> Result<(), Error> {
 
     log::info!("test: {}", test);
 
-    log::info!("{}", hello().await);
+    log::info!("{}", test_method().await);
 
     block_until_sigint::block(async move {
         let mut inte = time::interval(Duration::from_secs(2));
