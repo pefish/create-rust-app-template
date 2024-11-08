@@ -1,5 +1,5 @@
 #[cfg(test)]
-use super::util::hello;
+use super::say_hello::hello;
 
 #[tokio::main]
 #[test]

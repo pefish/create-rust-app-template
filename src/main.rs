@@ -4,9 +4,7 @@ use anyhow::{Context, Error, Result};
 use tokio::time;
 
 mod util;
-use util::hello;
-
-mod util_test;
+use util::say_hello::hello;
 
 use dotenv::dotenv;
 

@@ -1,6 +1,6 @@
 use anyhow::{Error, Result};
 
-use app_name::util::hello;
+use app_name::util::say_hello::hello;
 
 #[tokio::main]
 async fn main() -> Result<(), Error> {
